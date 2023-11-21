@@ -1,0 +1,22 @@
+version: '3'
+
+services:
+  redis:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: redis
+    ports:
+      - "6379:6379"
+    restart: always
+    networks:
+      network:
+        ipv4_address: 172.21.0.2
+
+networks:
+  network:
+    driver: bridge
+    ipam:
+      config:
+        - subnet: 172.21.0.0/16
+          gateway: 172.21.0.1
